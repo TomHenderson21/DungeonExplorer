@@ -2,7 +2,7 @@
 {
     public class Room
     { 
-        private string description;
+        private string description; 
 
         public Room(string description)
         {

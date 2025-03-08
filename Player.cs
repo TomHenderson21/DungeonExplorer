@@ -15,7 +15,7 @@ namespace DungeonExplorer
         public Player(string name, int health) 
         {
             Name = name;
-            Health = health;
+            Health = health; 
         }
         public void PickUpItem()
         {

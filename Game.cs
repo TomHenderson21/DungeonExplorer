@@ -8,7 +8,7 @@ namespace DungeonExplorer
         private Player player;
         private Room currentRoom;
 
-        public Game()
+        public Game() 
         {
             Console.WriteLine("Welcome to the Dungeon Explorer Game!");
             Console.Write("Enter your preferred character name: ");
