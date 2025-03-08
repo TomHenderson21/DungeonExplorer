@@ -32,7 +32,7 @@ namespace DungeonExplorer
                 Console.WriteLine("3) Check inventory");
                 Console.WriteLine("4) Check health");
                 Console.WriteLine("5) Exit the game");
-                Console.Write("Your choice: ");
+                Console.Write("Please enter your choice with the corresponding number: ");
                 
                 string userChoice = Console.ReadLine();
 
