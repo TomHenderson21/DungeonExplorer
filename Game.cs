@@ -8,7 +8,7 @@ namespace DungeonExplorer
         private Player player;
         private Room currentRoom;
 
-        public Game()
+        public Game() 
         {
             Console.WriteLine("Welcome to the Dungeon Explorer Game!");
             Console.Write("Enter your preferred character name: ");
@@ -23,15 +23,16 @@ namespace DungeonExplorer
             bool playing = true;
             Console.WriteLine($"Welcome, Tarnished {player.Name}. You are about to embark on your new journey in these dungeons but be careful on your discovery as who knows what you may find, remember you only have {player.Health} health.");
             Console.WriteLine($"You are currently in a {currentRoom.GetDescription()}.");
+            Console.WriteLine("To begin your journey you will have to decide what you want to do.");
             while (playing)
             {
-                Console.WriteLine("To begin your journey you will have to decide what you want to do from the following...");
+                Console.WriteLine("Please choose what you want to do from the following...");
                 Console.WriteLine("1) Room description");
                 Console.WriteLine("2) Explore room ");
                 Console.WriteLine("3) Check inventory");
                 Console.WriteLine("4) Check health");
                 Console.WriteLine("5) Exit the game");
-                Console.Write("Your choice: ");
+                Console.Write("Please enter your choice with the corresponding number: ");
                 
                 string userChoice = Console.ReadLine();
 
