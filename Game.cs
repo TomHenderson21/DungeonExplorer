@@ -30,42 +30,38 @@ namespace DungeonExplorer
                 Console.WriteLine("2) Explore room ");
                 Console.WriteLine("3) Check inventory");
                 Console.WriteLine("4) Check health");
-                Console.WriteLine("5) Enter the next room");
+                Console.WriteLine("5) Enter the next room");    //Option to go to new room after comment from a reviewer   
                 Console.WriteLine("6) Exit the game");
-                Console.Write("Please enter your choice with the corresponding number: ");
+                Console.Write("Please enter your choice with a number from 1 to 6: ");
                 
-                int userChoice = Convert.ToInt32(Console.ReadLine()); //Get the userChoice input as an integer
-                
-                if (userChoice == 1)
+                string userChoice = Console.ReadLine(); //Get the userChoice input as an integer
+
+                switch (userChoice)
                 {
-                    Console.WriteLine($"Your are in {currentRoom.GetDescription()}.");  //Room description shown again 
-                }
-                else if (userChoice == 2)
-                {
-                    Console.WriteLine("During your search around the room");    //Tells user what they found during room search
-                    player.PickUpItem();
-                }
-                else if (userChoice == 3)
-                {
-                    Console.WriteLine("You chose to check your inventory, ");   //Shows the user what is in their inventory
-                    player.InventoryContents();
-                }
-                else if (userChoice == 4)
-                {
-                    Console.WriteLine($"You are currently at {player.Health} health out of 100.");  //Shows the user their health
-                }
-                else if (userChoice == 5)
-                {
-                    Console.WriteLine("You chose to enter the next room, this is currently unavailable.");  //Tell the user that this action is unavailable
-                }
-                else if (userChoice == 6)
-                {
-                    Console.WriteLine("You chose to exit the game.");   //Lets user exit game
-                    playing = false;
-                }
-                else
-                {
-                    Console.WriteLine($"Please try again '{userChoice}' is an invalid choice, please enter a valid choice. ");  //If none of the userChoices ran tell the user to enter a valid choice
+                    case "1":
+                        Console.WriteLine($"You are in {currentRoom.GetDescription()}.");   //Room description shown again 
+                        break;
+                    case "2":
+                        Console.Write("During your search around the room");    //Tells user what they found during room search
+                        player.PickUpItem();
+                        break;
+                    case "3":
+                        Console.Write("You chose to check your inventory, ");    //Shows the user what is in their inventory
+                        player.InventoryContents();
+                        break;
+                    case "4":
+                        Console.WriteLine($"You are currently at {player.Health} health out of 100.");  //Shows the user their health
+                        break;
+                    case "5":
+                        Console.WriteLine("You chose to enter the next room, this is currently unavailable.");   //Tell the user that this action is unavailable
+                        break;
+                    case "6":
+                        Console.WriteLine("You chose to exit the game.");   //Lets user exit game
+                        playing = false;
+                        break;
+                    default:    //If none of the cases are met the following is shown
+                        Console.WriteLine($"Please try again '{userChoice}' is an invalid choice, please enter a valid choice.");    //Tells user their choice was invalid and to enter a new valid choice
+                        continue;
                 }
             }
         }
