@@ -1,46 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace DungeonExplorer
 {
-    public class Player
-    {
-        public string Name { get; private set; } 
-        public int Health { get; private set; }
+    public class Player : Creature, IDamageable   //Implements IDamageable interface and creature abstract class
 
-        private List<string> inventory = new List<string> {};   //Create an empty inventory list for items to be added to
-        private List<string> ItemsForUse = new List<string> {"Sword", "Shield", "Spear"};   //Create a list of items that can be found
-        Random random = new Random();   //Initialise random function
-        
-        public Player(string name, int health) 
+    {
+        public string Name { get; private set; }    //Public so the user can see their name and health
+        public int Health { get; set; }
+        public Inventory Inventory { get; private set; }    
+
+        public Player(string name, int health)  //Give a player a name and health
         {
             Name = name;
-            Health = health;   
+            Health = health;
+            Inventory = new Inventory();
         }
-        public void PickUpItem()
+        
+        public void DamageRecieved(int damage)  //Body for DamageRecieved
         {
-            if (inventory.Count < 3)    //If user inventory count is below 3 allow for items to found
+            Health -= damage;   //Players health reduced by damage value
+            Console.WriteLine($"\n{Name} has taken {damage} damage. {Health} health remaining");    //Tell user how much damage they took and how much health remains
+            if (Health <= 0)
             {
-                string chosenItem = ItemsForUse[random.Next(ItemsForUse.Count)];    //Select a random item from ItemsForUse each time
-                Console.WriteLine($" you picked up a {chosenItem}.");
-                inventory.Add(chosenItem);  //Add the item found to the inventory list
-                ItemsForUse.Remove(chosenItem); //Removed the item found from the item list once found to stop duplicates after a comment from reviewer
-            }
-            else if (inventory.Count == 3)  //If user inventory is at 3 don't allow anymore items to be found as all possible items found
-            {
-                Console.WriteLine(" you didnt find anything, this room has been fully searched.");
+                Console.WriteLine("\nYOU DIED!");   //If health is below or equal to 0 let user know they died
+                Console.WriteLine("\nThank you for playing this game, but better luck on your next journey.");
+                Environment.Exit(0);    //End program as user has died and they can't continue
             }
         }
-        public void InventoryContents()
+
+        public int DealtDamage(int damage)  //Body for DealtDamage
         {
-            if (inventory.Count == 0)   //If the user checks inventory when no items in there show the following
-            {
-                Console.WriteLine("you currently have no items in your inventory.");
-            }
-            else     //As long as the inventory has items show the following
-            {
-                Console.WriteLine("your inventory contains: " + string.Join(", ", inventory));
-            }
+            Console.WriteLine($"\n{Name} has attacked the monster and dealt {damage} damage.");  //Tell user how much damage they have done to monster
+            return damage;
+        }
+
+        public override void AttackStyle()  //Override class to customise attack style to Player
+        {
+            Console.WriteLine($"\n{Name} attacks the monster by running and hitting it with there weapon.");
         }
     }
 }
